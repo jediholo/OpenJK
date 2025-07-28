@@ -128,7 +128,7 @@ void Con_MessageMode3_f (void)
 	}
 
 	chat_playerNum = CGVM_CrosshairPlayer();
-	if ( chat_playerNum < 0 || chat_playerNum >= MAX_CLIENTS ) {
+	if ( chat_playerNum < 0 || chat_playerNum >= MAX_CLIENTS*2 ) {	// RPMod: allow up to 64 clients
 		chat_playerNum = -1;
 		return;
 	}
@@ -152,7 +152,7 @@ void Con_MessageMode4_f (void)
 	}
 
 	chat_playerNum = CGVM_LastAttacker();
-	if ( chat_playerNum < 0 || chat_playerNum >= MAX_CLIENTS ) {
+	if ( chat_playerNum < 0 || chat_playerNum >= MAX_CLIENTS*2 ) {	// RPMod: allow up to 64 clients
 		chat_playerNum = -1;
 		return;
 	}
