@@ -248,8 +248,8 @@ void SV_BoundMaxClients( int minimum ) {
 
 	if ( sv_maxclients->integer < minimum ) {
 		Cvar_Set( "sv_maxclients", va("%i", minimum) );
-	} else if ( sv_maxclients->integer > MAX_CLIENTS ) {
-		Cvar_Set( "sv_maxclients", va("%i", MAX_CLIENTS) );
+	} else if ( sv_maxclients->integer > MAX_CLIENTS*2 ) {		// RPMod: allow up to 64 clients
+		Cvar_Set( "sv_maxclients", va("%i", MAX_CLIENTS*2) );	// RPMod: allow up to 64 clients
 	}
 }
 
