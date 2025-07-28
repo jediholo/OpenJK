@@ -1,0 +1,27 @@
+name: Docker
+
+on:
+  workflow_dispatch:
+  push:
+    branches: master
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  DOCKER_REPO: ${{ github.repository_owner }}
+  DOCKER_IMAGE: openjkded
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to Docker registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.DOCKER_REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build and publish image
+      uses: docker/build-push-action@v4
+      with:
+        push: true
+        tags: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_REPO }}/${{ env.DOCKER_IMAGE }}:${{ github.ref_name }}
